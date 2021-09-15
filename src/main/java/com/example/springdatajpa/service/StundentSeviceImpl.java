@@ -17,12 +17,13 @@ public class StundentSeviceImpl implements StudentService{
 
     @Override
     public void deleteStudent(Long id) {
-
+        studentRepository.deleteById(id);
+        System.out.println("delete successfully");
     }
 
     @Override
     public List<Student> getAllStudent() {
-        return null;
+        return (List<Student>) studentRepository.findAll();
     }
 
     @Override

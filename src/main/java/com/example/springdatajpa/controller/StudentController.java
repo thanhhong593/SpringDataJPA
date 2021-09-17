@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 public class StudentController {
@@ -29,5 +30,15 @@ public class StudentController {
     @GetMapping("/students")
     public List<Student>  getAllStudent(){
         return studentService.getAllStudent();
+    }
+    @PutMapping("/student/{id}")
+    public Student updateStudent(@PathVariable("id") Long id, @RequestBody Student student){
+        Student student1 = studentService.findById(id).get();
+        if(student1 != null){
+            return studentService.saveStudent(student);
+        }else{
+            System.out.println("Student no data");
+            return new Student();
+        }
     }
 }

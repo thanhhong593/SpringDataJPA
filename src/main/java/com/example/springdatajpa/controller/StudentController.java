@@ -5,8 +5,11 @@ import com.example.springdatajpa.service.StudentService;
 
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,8 +22,8 @@ public class StudentController {
         return "Hello World";
     }
     @PostMapping("/student")
-    public Student add(@RequestBody Student student){
-        return studentService.saveStudent(student);
+    public ResponseEntity<Student> add(@Valid @RequestBody Student student){
+        return new ResponseEntity<Student>(studentService.saveStudent(student), HttpStatus.CREATED);
     }
     @DeleteMapping("/student/{id}")
     public String deleteStudent(@PathVariable("id") Long id){

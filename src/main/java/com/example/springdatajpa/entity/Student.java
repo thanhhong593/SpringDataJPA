@@ -17,7 +17,6 @@ import javax.validation.constraints.NotBlank;
 @Getter
 @Setter
 @Builder
-
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

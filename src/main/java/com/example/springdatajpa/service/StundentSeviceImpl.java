@@ -36,6 +36,17 @@ public class StundentSeviceImpl implements StudentService{
 
     @Override
     public Student updateStudent(Long id, Student student) {
-        return null;
+        Student studentDB = studentRepository.findStudentById(id);
+        if(student.getFirstName()!= null){
+            studentDB.setFirstName(student.getFirstName());
+        }
+        if(student.getLastName()!= null){
+            studentDB.setLastName(student.getLastName());
+        }
+        if(student.getEmail()!= null){
+            studentDB.setEmail(student.getEmail());
+        }
+
+        return studentRepository.save(studentDB);
     }
 }

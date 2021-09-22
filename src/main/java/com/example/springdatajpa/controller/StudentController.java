@@ -36,12 +36,6 @@ public class StudentController {
     }
     @PutMapping("/student/{id}")
     public Student updateStudent(@PathVariable("id") Long id, @RequestBody Student student){
-        Student student1 = studentService.findById(id).get();
-        if(student1 != null){
-            return studentService.saveStudent(student);
-        }else{
-            System.out.println("Student no data");
-            return new Student();
-        }
+        return studentService.updateStudent(id,student);
     }
 }

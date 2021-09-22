@@ -1,5 +1,6 @@
 package com.example.springdatajpa.controller;
 
+import com.example.springdatajpa.dto.StudentDTO;
 import com.example.springdatajpa.entity.Student;
 import com.example.springdatajpa.service.StudentService;
 
@@ -7,6 +8,7 @@ import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,5 +44,14 @@ public class StudentController {
 //        }
 
         return studentService.updateStudent((long)id,student);
+    }
+    @GetMapping("/students/listDTO")
+    public List<StudentDTO> getListDTO(){
+        List<Student> list= studentService.getAllStudent();
+        List<StudentDTO> listDTO = new ArrayList<>();
+        for (Student student: list) {
+            listDTO.add(new StudentDTO(student));
+        }
+        return listDTO;
     }
 }

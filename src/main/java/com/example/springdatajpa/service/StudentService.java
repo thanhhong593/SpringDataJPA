@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Service
 public interface StudentService {
-    public Optional<Student> findById(Long id);
+    public Student findStudentById(Long id);
     public Student saveStudent(Student student);
     public void deleteStudent(Long id);
     public List<Student> getAllStudent();

@@ -14,8 +14,8 @@ public class StundentSeviceImpl implements StudentService{
     private StudentRepository studentRepository;
 
     @Override
-    public Optional<Student> findById(Long id) {
-        return studentRepository.findById(id);
+    public Student findStudentById(Long id) {
+        return studentRepository.findStudentById(id);
     }
 
     @Override
@@ -36,6 +36,20 @@ public class StundentSeviceImpl implements StudentService{
 
     @Override
     public Student updateStudent(Long id, Student student) {
-        return null;
+        Student studentDB= findStudentById(id);
+        if(student.getFirstName()!= null){
+            System.out.println(student.getFirstName());
+            studentDB.setFirstName(student.getFirstName());
+        }
+        if(student.getEmail()!= null){
+            System.out.println(student.getEmail());
+            studentDB.setEmail(student.getEmail());
+        }
+        if(student.getLastName()!= null){
+            System.out.println(student.getLastName());
+            studentDB.setLastName(student.getLastName());
+        }
+        System.out.println(studentDB);
+        return studentRepository.save(studentDB);
     }
 }
